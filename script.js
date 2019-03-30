@@ -19,14 +19,13 @@ class toDoList {
         this.render()
     }
 
-    toggleTask(element, span){
+    toggleTask(element){
         if (element.isTaskCompleted === false) {
             element.isTaskCompleted = true
-            span.style.textDecoration = 'line-through'
         } else if (element.isTaskCompleted === true) {
             element.isTaskCompleted = false
-            span.style.textDecoration = 'none'
         }
+        this.render()
     }
 
     render(){
@@ -60,6 +59,7 @@ class toDoList {
             const buttonDelete = document.createElement('button')
 
             span.innerText = `${index + 1}. ${element.text}`
+            if (element.isTaskCompleted) span.style.textDecoration = 'line-through'
             buttonDelete.innerText = 'DELETE'
 
             buttonDelete.addEventListener(
