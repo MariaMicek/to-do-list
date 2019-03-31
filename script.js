@@ -1,4 +1,4 @@
-class toDoList {
+class ToDoList {
     constructor(selector){
         this.container = document.querySelector(selector) || document.body
         this.tasks = JSON.parse(localStorage.getItem('to-do-list')) || []
@@ -74,17 +74,28 @@ class toDoList {
 
     render(){
         this.container.innerHTML =''
+
+        const header = document.createElement('h1')
+        header.className = 'header'
+        header.innerText = 'To Do List'
+        this.container.appendChild(header)
+
         this.renderFrom()
         this.renderFilterInput()
-        this.renderTask()
         this.renderButtonShowAll()
         this.renderButtonShowCompleted()
         this.renderButtonShowUncompleted()
+        this.renderTask()
     }
 
     renderFrom(){
         const input = document.createElement('input')
         const buttonAdd = document.createElement('button')
+        const div = document.createElement('div')
+
+        input.className = 'input input-form'
+        buttonAdd.className = 'button button-add'
+        div.className = 'form-container'
 
         input.setAttribute('placeholder', 'Add new task')
         buttonAdd.innerText = 'ADD'
@@ -96,15 +107,21 @@ class toDoList {
             }
         )
 
-        this.container.appendChild(input)
-        this.container.appendChild(buttonAdd)
+        div.appendChild(input)
+        div.appendChild(buttonAdd)
+        this.container.appendChild(div)
     }
 
     renderFilterInput(){
         const input = document.createElement('input')
         const buttonSearch = document.createElement('button')
+        const div = document.createElement('div')
 
-        input.setAttribute('placeholder', 'Find your tasks')
+        input.className = 'input input-filter'
+        buttonSearch.className = 'button button-search'
+        div.className = 'filter-container'
+
+        input.setAttribute('placeholder', 'Find in your tasks')
         buttonSearch.innerText = 'SEARCH'
         
         buttonSearch.addEventListener(
@@ -114,12 +131,15 @@ class toDoList {
             }
         )
 
-        this.container.appendChild(input)
-        this.container.appendChild(buttonSearch)
+        div.appendChild(input)
+        div.appendChild(buttonSearch)
+        this.container.appendChild(div)
     }
 
     renderButtonShowAll(){
         const buttonShowAll = document.createElement('button')
+        buttonShowAll.className = 'button button-all'
+
         buttonShowAll.innerText = 'ALL'
         buttonShowAll.addEventListener(
             'click',
@@ -130,6 +150,8 @@ class toDoList {
 
     renderButtonShowCompleted(){
         const buttonShowCompleted = document.createElement('button')
+        buttonShowCompleted.className = 'button button-completed'
+
         buttonShowCompleted.innerText = 'COMPLETED'
         buttonShowCompleted.addEventListener(
             'click',
@@ -140,6 +162,8 @@ class toDoList {
 
     renderButtonShowUncompleted(){
         const buttonShowUncompleted = document.createElement('button')
+        buttonShowUncompleted.className = 'button button-uncompleted'
+
         buttonShowUncompleted.innerText = 'UNCOMPLETED'
         buttonShowUncompleted.addEventListener(
             'click',
@@ -154,10 +178,13 @@ class toDoList {
             const span = document.createElement('span')
             const buttonDelete = document.createElement('button')
 
-            div.className = 'task'
+            div.className = 'task-container'
+            span.className = 'task'
+            buttonDelete.className = 'button button-delete'
+
             span.innerText = `${index + 1}. ${element.text}`
             if (element.isTaskCompleted) span.style.textDecoration = 'line-through'
-            buttonDelete.innerText = 'DELETE'
+            buttonDelete.innerHTML = `<img src='delete.png' class='delete-img'>`
 
             buttonDelete.addEventListener(
                 'click',
@@ -173,8 +200,8 @@ class toDoList {
             if (!element.isTaskShowed) div.style.display = 'none'
 
             this.container.appendChild(div)
-            div.appendChild(span)
             div.appendChild(buttonDelete)
+            div.appendChild(span)
         })
     }
 }
