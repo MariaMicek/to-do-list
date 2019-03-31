@@ -11,7 +11,7 @@ class ToDoList {
 
     addTask(text){
         const newTask = new Task(text)
-        this.tasks = this.tasks.concat(newTask.task)
+        this.tasks = this.tasks.concat(newTask)
         this.showAll()
         this.render()
         this.saveTask()
@@ -209,10 +209,8 @@ class ToDoList {
 
 class Task {
     constructor(text){
-        this.task = {
-            text: text,
-            isTaskCompleted: false,
-            isTaskShowed: true
-        }
+        this.text = text,
+        this.isTaskCompleted = false,
+        this.isTaskShowed = true
     }
 }
