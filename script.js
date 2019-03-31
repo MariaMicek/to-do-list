@@ -6,13 +6,10 @@ class toDoList {
     }
 
     addTask(text){
-        const task = {
-            text: text,
-            isTaskCompleted: false
-        }
-        this.tasks = this.tasks.concat(task)
+        const newTask = new Task(text)
+        this.tasks = this.tasks.concat(newTask.task)
         this.render()
-    }
+    }    
 
     removeTask(index){
         this.tasks.splice(index, 1)
@@ -40,7 +37,7 @@ class toDoList {
 
         input.setAttribute('placeholder', 'Add new task')
         buttonAdd.innerText = 'ADD'
-
+        
         buttonAdd.addEventListener(
             'click',
             () => {
@@ -69,12 +66,22 @@ class toDoList {
 
             span.addEventListener(
                 'click',
-                () => this.toggleTask(element, span)
+                () => this.toggleTask(element)
             )
 
             this.container.appendChild(div)
             div.appendChild(span)
             div.appendChild(buttonDelete)
         })
+    }
+}
+
+
+class Task {
+    constructor(text){
+        this.task = {
+            text: text,
+            isTaskCompleted: false
+        }
     }
 }
