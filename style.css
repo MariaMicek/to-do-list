@@ -9,7 +9,7 @@ body{
 }
 
 .to-do-list-container{
-    width: 40%;
+    width: 50%;
     height: 100vh;
     margin: 0 auto;
     padding: 0 30px;
@@ -25,13 +25,14 @@ body{
 }
 
 .form-container{
-    width: 70%;
-    margin: 30px auto 20px;
+    margin-top: 30px;
+    margin-left: 15%;
 }
 
 .filter-container{
-    width: 70%;
-    margin: 20px auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 15%;
 }
 
 .button{
@@ -47,7 +48,8 @@ body{
 }
 
 .button-all, .button-completed, .button-uncompleted{
-    background: rgb(164, 192, 202)
+    background: rgb(164, 192, 202);
+    margin-bottom: 20px;
 }
 
 .input{
@@ -74,7 +76,46 @@ body{
 }
 
 .task{
+    max-width: 100%;
     font-size: 20px;
     font-weight: lighter;
     cursor: pointer;
+}
+
+@media screen and (max-width: 1000px){
+    .to-do-list-container{
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 700px){
+    .to-do-list-container{
+        width: 80%;
+    }
+    .task-container{
+        width: 90%;
+    }
+    .button-all, .form-container, .filter-container{
+        margin-left: 5%;
+    }
+    
+}
+
+@media screen and (max-width: 430px){
+    .to-do-list-container{
+        width: 100%;
+    }
+    .task{
+        font-size: 18px;
+    }
+    .button{
+        font-size: 11px;
+        margin-left: 8px;
+    }
+    .button-all{
+        margin-left: 5%;
+    }
+    .input{
+        padding: 4px;
+    }
 }
